@@ -1,0 +1,13 @@
+# Back of card = afmt
+afmt: "<div class=\"hanzi\">{{中文}}</div>\n\
+<div class=\"spacer\"> </div>\n\
+<div class=\"english\">\n\
+    <div class=\"pinyin\">{{Pinyin}}</div>\n\
+    <div class=\"spacerSmall\"> </div>\n\
+    {{English}}
+    <div class=\"spacerMedium\"> </div>\n\
+    <div class=\"notes\">{{Notes}}</div>\n\
+</div>"
+name: Glossika
+# Front of the card
+qfmt: '{{audio}}'
