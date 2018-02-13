@@ -1,5 +1,9 @@
 # Back of card = afmt
 afmt: "<div class=\"hanzi\">{{中文}}</div>\n\
+<div class=lookup>\n\
+    <a href=\"http://www.mdbg.net/chindict/chindict.php?\
+    page=worddict&wdrst=0&wdqb={{text:中文}}\">MDBG</a><br><br>\n\
+</div>\n\
 <div class=\"spacer\"> </div>\n\
 <div class=\"english\">\n\
     <div class=\"pinyin\">{{Pinyin}}</div>\n\
