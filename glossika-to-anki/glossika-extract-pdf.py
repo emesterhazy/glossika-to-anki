@@ -13,7 +13,9 @@ def main():
     # If your language isn't listed, add it here
 
     languages = {
-        'ZS': ['EN', '简', 'PIN']  # Mandarin
+        'ZS': ['EN', '简', 'PIN'],  # Simplified Chinese
+        'ZH': ['EN', '繁', 'PIN'],  # Traditional Chinese
+        'JA': ['EN', '日', 'ROM']   # Japanese
     }
 
     src_dir = 'glossika_src_data/pdf'
