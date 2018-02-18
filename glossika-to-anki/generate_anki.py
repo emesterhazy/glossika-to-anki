@@ -26,16 +26,16 @@ def main():
 
     # Define genanki models here. See the genanki documentation for details
     langs['ZS']['model'] = genanki.Model(
-        model_id = 1546318185,  # Must be unique and random; see genanki docs
-        name = 'Glossika ZS',
-        fields = langs['ZS']['fields'],
-        templates= [langs['ZS']['template']],
-        css = langs['ZS']['css'])
+        model_id=1546318185,  # Must be unique and random; see genanki docs
+        name='Glossika ZS',
+        fields=langs['ZS']['fields'],
+        templates=[langs['ZS']['template']],
+        css=langs['ZS']['css'])
 
     # Define genanki decks here
     langs['ZS']['deck'] = genanki.Deck(
-        deck_id = 1507569441,  # Must be unique and random; see genanki docs
-        name = 'Glossika Mandarin (Mainland)')
+        deck_id=1507569441,  # Must be unique and random; see genanki docs
+        name='Glossika Mandarin (Mainland)')
 
     if not os.path.exists(audio_dir):
         sys.exit('Audio output folder missing.\n'
@@ -104,12 +104,12 @@ def get_template(f_name):
     try:
         with open(os.path.join(project_dir, 'templates', f_name),
                   'r', encoding='utf-8') as f:
-                if f_name[-3:] == 'yml':
-                    return yaml.load(f)
-                elif f_name[-3:] == 'css':
-                    return f.read()
-                else:
-                    return None
+            if f_name[-3:] == 'yml':
+                return yaml.load(f)
+            elif f_name[-3:] == 'css':
+                return f.read()
+            else:
+                return None
     except FileNotFoundError:
         sys.exit('Missing template file {}. Try again.'.format(f_name))
 
