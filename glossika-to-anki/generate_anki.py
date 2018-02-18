@@ -92,16 +92,16 @@ def main():
 
 
 def get_template(f_name):
-    with open(os.path.join(project_dir, 'templates', f_name), 'r') as f:
-        try:
-            if f_name[-3:] == 'yml':
-                return yaml.load(f)
-            elif f_name[-3:] == 'css':
-                return f.read()
-            else:
-                return None
-        except FileNotFoundError:
-            sys.exit('Missing template file {}. Try again.'.format(f_name))
+    try:
+        with open(os.path.join('templates', f_name), 'r', encoding='utf-8') as f:
+                if f_name[-3:] == 'yml':
+                    return yaml.load(f)
+                elif f_name[-3:] == 'css':
+                    return f.read()
+                else:
+                    return None
+    except FileNotFoundError:
+        sys.exit('Missing template file {}. Try again.'.format(f_name))
 
 
 if __name__ == '__main__':
