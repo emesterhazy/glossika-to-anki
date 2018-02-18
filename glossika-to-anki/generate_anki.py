@@ -5,12 +5,12 @@ from collections import defaultdict
 import genanki
 import glob
 import os
+import random
 import re
 import sys
 import yaml
 
 
-# TODO: Currently only includes Mandarin template
 def main():
     print('\nStarting Anki generation...')
     call_dir = os.getcwd()
@@ -23,19 +23,34 @@ def main():
         'fields': get_template('zs-fields.yml'),
         'template': get_template('zs-template.yml'),
         'css': get_template('zs-css.css')}
+    langs['general'] = {
+        'fields': get_template('general-fields.yml'),
+        'template': get_template('general-template.yml'),
+        'css': get_template('general-css.css')}
 
-    # Define genanki models here. See the genanki documentation for details
-    langs['ZS']['model'] = genanki.Model(
+    # Define genanki models | See the genanki documentation for details
+    # TODO: Add a template supporting Japanese Romanji
+    langs['ZS']['model'] = genanki.Model(  # Simplified Chinese
         model_id=1546318185,  # Must be unique and random; see genanki docs
         name='Glossika ZS',
         fields=langs['ZS']['fields'],
         templates=[langs['ZS']['template']],
         css=langs['ZS']['css'])
+    langs['ZH'] = langs['ZS']  # Traditional Chinese
+    langs['general']['model'] = genanki.Model(
+        model_id=1481997294,
+        name='Glossika General',
+        fields=langs['general']['fields'],
+        templates=[langs['general']['template']],
+        css=langs['general']['css'])
 
-    # Define genanki decks here
+    # Define genanki decks
     langs['ZS']['deck'] = genanki.Deck(
         deck_id=1507569441,  # Must be unique and random; see genanki docs
         name='Glossika Mandarin (Mainland)')
+    langs['ZH']['deck'] = genanki.Deck(
+        deck_id=1435687014,
+        name='Glossika Mandarin (Taiwan)')
 
     if not os.path.exists(audio_dir):
         sys.exit('Audio output folder missing.\n'
@@ -68,13 +83,23 @@ def main():
             continue
 
         # Create deck
-        glossika_deck = langs[lang]['deck']
+        try:
+            glossika_deck = langs[lang]['deck']
+            model = langs[lang]['model']
+        except KeyError:  # Use general deck
+            random.seed(a=lang)
+            glossika_deck = genanki.Deck(
+                deck_id=random.randrange(1 << 30, 1 << 31),
+                name='Glossika {}'.format(lang))
+            model = langs['general']['model']
+
         for sent, audio in zip(sentences, mp3_names):
-            note = genanki.Note(
-                model=langs[lang]['model'],
-                # TODO: adjust number of fields by language
-                fields=[
-                    '[sound:{}]'.format(audio), sent[1], sent[2], sent[0], ''])
+            if lang in ['ZS', 'ZH']:
+                fields = [
+                    '[sound:{}]'.format(audio), sent[0], sent[1], sent[2], '']
+            else:
+                fields = ['[sound:{}]'.format(audio), sent[0], sent[1], '']
+            note = genanki.Note(model=model, fields=fields)
             glossika_deck.add_note(note)
 
         # Generate the Anki deck

@@ -1,0 +1,24 @@
+.card {
+     font-family: arial;
+     font-size: 30px;
+     text-align: center;
+     color: black;
+     background-color: white;
+}
+
+.english {
+     font-family: arial;
+     font-size: 20px;
+}
+
+.spacer {
+    height: 20px;
+}
+
+.spacerSmall {
+    height: 3px;
+}
+
+.spacerMedium {
+    height: 10px;
+}

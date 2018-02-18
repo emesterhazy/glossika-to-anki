@@ -1,5 +1,4 @@
 - {name: audio}
 - {name: English}
-- {name: 中文}
-- {name: Pinyin}
+- {name: TargetLanguage}
 - {name: Notes}

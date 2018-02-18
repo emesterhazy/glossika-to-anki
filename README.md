@@ -41,12 +41,9 @@ python generate_anki.py
 Import your new Anki deck!
 
 ## Limitations
-1. Currently Anki deck generation is only supported for Simplified Chinese, but PDF and mp3 splitting should work with all languages.
-If you need another language, please open an issue and I will add support as soon as possible.
+1. Only supports the v2 Glossika PDFs, not the older non-searchable PDFs. PDFs with copy protection must have it removed before sentences can be extracted.
 
-2. Only supports the v2 Glossika PDFs, not the older non-searchable PDFs.
-
-3. No support for extracting IPA
+2. No support for extracting IPA
 
 ## Contributing
 Pull requests are welcome. If you would like to add support for the v1 Glossika PDFs or make changes that require new dependencies please open an issue first to discuss.
