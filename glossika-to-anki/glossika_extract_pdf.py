@@ -8,6 +8,7 @@ import re
 import subprocess
 import sys
 
+
 def main():
     # Dictionary of languages and sentence markers.
     # If your language isn't listed, add it here
@@ -27,14 +28,21 @@ def main():
                  'Copy pdf files into this folder and re-run'.format(src_dir))
 
     files = glob.glob('glossika_src_data/pdf/GLOSSIKA-EN*-EBK.pdf')
+    if len(files) == 0:
+        print('\nNo matching PDF files detected.\n'
+              'Refer to the readme for the required file name pattern.')
+        return
+    else:
+        pass
     print('\nProcessing {} files...\n'.format(len(files)))
 
     for f in sorted(files):
-        f_name = f.split('/')[-1]
-        print('Processing  {}'.format(f_name))
+        f_name = f.split(os.sep)[-1]
+        print('Processing  {}...'.format(f_name), end='')
 
         re_match = re.search('(GLOSSIKA-EN(.{2,4})-..-EBK)\.pdf', f)
         if not re_match:
+            print('unmatched')
             print('File name does not match\n'
                   'Skipping {}'.format(f_name))
             continue
@@ -57,13 +65,14 @@ def main():
             except Exception as e:
                 pass
         if os.path.exists(text_pdf):
-            print('File locked... using existing text version of pdf')
+            print('file locked... using existing text version of pdf')
         else:
             # Convert with pdftotext
             st = subprocess.run(
                 args=['pdftotext', '-layout', '-enc', 'UTF-8', f, text_pdf],
                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             if st.returncode != 0:
+                print('error')
                 sys.exit('PDF conversion failed. Check file for corruption.\n'
                          'Aborting at {}'.format(f_name))
 
@@ -98,19 +107,20 @@ def main():
             indent_level = len(r.group(1))
 
         if len(phrases) != 1000:
+            print('error')
             print('Something went wrong...'
                   'found {} sentences instead of 1,000'.format(len(phrases)))
             continue
 
-        with open(csv_file, 'w', newline='') as f:
+        with open(csv_file, 'w', newline='', encoding='utf-8') as f:
             writer = csv.writer(f, dialect='excel-tab')
             for phrase in phrases:
                 writer.writerow(phrase)
         pdf.close()
         os.remove(text_pdf)
-        print('Finished    {}\n'.format(f_name))
+        print('complete')
 
-    print('Complete!')
+    print('PDF extract complete!')
 
 
 if __name__ == '__main__':

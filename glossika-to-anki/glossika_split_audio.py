@@ -19,8 +19,15 @@ def main():
 
     files = glob.glob(os.path.join(src_dir, '**/EN*-GMS-C-????.mp3'),
                       recursive=True)
-    print('\nProcessing {} files...\n'.format(len(files)))
+    if len(files) == 0:
+        print('\nNo matching audio files detected.\n'
+              'Refer to the readme for the required file name pattern')
+        return
+    else:
+        if not os.path.exists(out_dir):
+            os.makedirs(out_dir)
 
+    print('\nProcessing {} files...\n'.format(len(files)))
     for f in sorted(files, key=lambda x: re.search('(\d{4})', x).group(1)):
         f_name = f.split('/')[-1]
         print('Processing {}'.format(f_name))
@@ -72,8 +79,11 @@ def main():
             os.rename(f, os.path.join(out_dir, name))
     for f in glob.glob(os.path.join(out_dir, '???.mp3')):
         os.remove(f)
-    os.remove('mp3splt.log')
-    print('\nComplete!')
+    try:
+        os.remove('mp3splt.log')
+    except FileNotFoundError:
+        pass
+    print('\nAudio split complete!')
 
 
 if __name__ == '__main__':
