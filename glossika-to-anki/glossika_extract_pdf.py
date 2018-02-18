@@ -72,8 +72,8 @@ def main():
                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             if st.returncode != 0:
                 print('error')
-                sys.exit('PDF conversion failed. Check file for corruption.\n'
-                         'Aborting at {}'.format(f_name))
+                sys.exit('PDF conversion failed. '
+                         'Remove copy protection and retry.\n')
 
         pdf = open(text_pdf, encoding='utf-8')
         lang_ix = 0  # Track which type of phrase is next
