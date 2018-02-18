@@ -19,7 +19,7 @@ def main():
         'JA': ['EN', '日', 'ROM']   # Japanese
     }
 
-    src_dir = 'glossika_src_data/pdf'
+    src_dir = os.path.join('glossika_source', 'pdf')
     out_dir = 'glossika_output'
 
     if not os.path.exists(src_dir):
@@ -27,7 +27,7 @@ def main():
         sys.exit('\nCreated {}\n'
                  'Copy pdf files into this folder and re-run'.format(src_dir))
 
-    files = glob.glob('glossika_src_data/pdf/GLOSSIKA-EN*-EBK.pdf')
+    files = glob.glob(os.path.join(src_dir, 'GLOSSIKA-EN*-EBK.pdf'))
     if len(files) == 0:
         print('\nNo matching PDF files detected.\n'
               'Refer to the readme for the required file name pattern.')
@@ -62,9 +62,8 @@ def main():
         if os.path.exists(text_pdf):
             try:
                 os.remove(text_pdf)
-            except Exception as e:
+            except OSError as e:
                 pass
-        if os.path.exists(text_pdf):
             print('file locked... using existing text version of pdf')
         else:
             # Convert with pdftotext

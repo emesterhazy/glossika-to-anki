@@ -8,8 +8,8 @@ import sys
 
 
 def main():
-    src_dir = 'glossika_src_data/audio'
-    out_dir = 'glossika_output/audio'
+    src_dir = os.path.join('glossika_source', 'audio')
+    out_dir = os.path.join('glossika_output', 'audio')
 
     if not os.path.exists(src_dir):
         os.makedirs(src_dir)
@@ -17,11 +17,12 @@ def main():
                  'Copy GMS-C mp3 files into this folder and re-run.\n'
                  'Files can be within sub-folders.'.format(src_dir))
 
-    files = glob.glob(os.path.join(src_dir, '**/EN*-GMS-C-????.mp3'),
-                      recursive=True)
+    files = glob.glob(
+        os.path.join(src_dir, '**', 'EN*-GMS-C-????.mp3'),
+        recursive=True)
     if len(files) == 0:
         print('\nNo matching audio files detected.\n'
-              'Refer to the readme for the required file name pattern')
+              'Refer to the readme for the required file name pattern.')
         return
     else:
         if not os.path.exists(out_dir):
@@ -29,7 +30,7 @@ def main():
 
     print('\nProcessing {} files...\n'.format(len(files)))
     for f in sorted(files, key=lambda x: re.search('(\d{4})', x).group(1)):
-        f_name = f.split('/')[-1]
+        f_name = f.split(os.sep)[-1]
         print('Processing {}'.format(f_name))
 
         re_match = re.search('EN(.{2,4})-..-GMS-C-(\d{4}).mp3', f)
