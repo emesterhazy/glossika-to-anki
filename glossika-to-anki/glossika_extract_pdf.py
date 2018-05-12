@@ -62,18 +62,12 @@ def main():
         if os.path.exists(text_pdf):
             try:
                 os.remove(text_pdf)
+                convert_pdf(f, text_pdf)
             except OSError as e:
                 pass
-            print('file locked... using existing text version of pdf')
+                print('file locked... using existing text version of pdf')
         else:
-            # Convert with pdftotext
-            st = subprocess.run(
-                args=['pdftotext', '-layout', '-enc', 'UTF-8', f, text_pdf],
-                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-            if st.returncode != 0:
-                print('error')
-                sys.exit('PDF conversion failed. '
-                         'Remove copy protection and retry.\n')
+            convert_pdf(f, text_pdf)
 
         pdf = open(text_pdf, encoding='utf-8')
         lang_ix = 0  # Track which type of phrase is next
@@ -120,6 +114,16 @@ def main():
         print('complete')
 
     print('PDF extract complete!')
+
+
+def convert_pdf(f, text_pdf):
+    st = subprocess.run(
+        args=['pdftotext', '-layout', '-enc', 'UTF-8', f, text_pdf],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    if st.returncode != 0:
+        print('error')
+        sys.exit('PDF conversion failed. '
+                 'Remove copy protection and retry.\n')
 
 
 if __name__ == '__main__':
