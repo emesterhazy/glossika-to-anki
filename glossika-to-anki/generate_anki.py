@@ -23,6 +23,10 @@ def main():
         'fields': get_template('zs-fields.yml'),
         'template': get_template('zs-template.yml'),
         'css': get_template('zs-css.css')}
+    langs['YUE'] = {
+        'fields': get_template('yue-fields.yml'),
+        'template': get_template('yue-template.yml'),
+        'css': get_template('yue-css.css')}
     langs['general'] = {
         'fields': get_template('general-fields.yml'),
         'template': get_template('general-template.yml'),
@@ -30,13 +34,23 @@ def main():
 
     # Define genanki models | See the genanki documentation for details
     # TODO: Add a template supporting Japanese Romanji
-    langs['ZS']['model'] = genanki.Model(  # Simplified Chinese
+    # Simplified Chinese
+    langs['ZS']['model'] = genanki.Model(
         model_id=1546318185,  # Must be unique and random; see genanki docs
         name='Glossika ZS',
         fields=langs['ZS']['fields'],
         templates=[langs['ZS']['template']],
         css=langs['ZS']['css'])
-    langs['ZH'] = langs['ZS']  # Traditional Chinese
+    # Traditional Chinese
+    langs['ZH'] = langs['ZS']
+    # Cantonese
+    langs['YUE']['model'] = genanki.Model(
+        model_id=1900446225,
+        name='Glossika YUE',
+        fields=langs['YUE']['fields'],
+        templates=[langs['YUE']['template']],
+        css=langs['YUE']['css'])
+    # General Model
     langs['general']['model'] = genanki.Model(
         model_id=1481997294,
         name='Glossika General',
@@ -51,6 +65,9 @@ def main():
     langs['ZH']['deck'] = genanki.Deck(
         deck_id=1435687014,
         name='Glossika Mandarin (Taiwan)')
+    langs['YUE']['deck'] = genanki.Deck(
+        deck_id=1209163933,
+        name='Glossika Cantonese')
 
     if not os.path.exists(audio_dir):
         sys.exit('Audio output folder missing.\n'
@@ -94,7 +111,7 @@ def main():
             model = langs['general']['model']
 
         for sent, audio in zip(sentences, mp3_names):
-            if lang in ['ZS', 'ZH']:
+            if lang in ['ZS', 'ZH', 'YUE']:
                 fields = [
                     '[sound:{}]'.format(audio), sent[0], sent[1], sent[2], '']
             else:

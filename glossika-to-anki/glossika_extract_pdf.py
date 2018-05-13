@@ -16,6 +16,7 @@ def main():
     languages = {
         'ZS': ['EN', '简', 'PIN'],  # Simplified Chinese
         'ZH': ['EN', '繁', 'PIN'],  # Traditional Chinese
+        'YUE': ['EN', '粵', 'YALE'],  # Cantonese | Change YALE to JYUT for Jyutping
         'JA': ['EN', '日', 'ROM']   # Japanese
     }
 
@@ -64,7 +65,6 @@ def main():
                 os.remove(text_pdf)
                 convert_pdf(f, text_pdf)
             except OSError as e:
-                pass
                 print('file locked... using existing text version of pdf')
         else:
             convert_pdf(f, text_pdf)

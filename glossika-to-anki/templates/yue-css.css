@@ -1,0 +1,35 @@
+.card {
+     font-family: arial;
+     font-size: 30px;
+     text-align: center;
+     color: black;
+     background-color: white;
+}
+
+.hanzi {
+     font-family: SimSun;
+     font-size: 28px;
+}
+
+.english {
+     font-family: arial;
+     font-size: 20px;
+}
+
+.pinyin {
+}
+
+.spacer {
+    height: 20px;
+}
+
+.spacerSmall {
+    height: 3px;
+}
+
+.spacerMedium {
+    height: 10px;
+}
+
+.lookup {font-size: 12px; color:grey;
+}
