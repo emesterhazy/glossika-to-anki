@@ -16,6 +16,7 @@ def main():
     languages = {
         'ZS': ['EN', '简', 'PIN'],  # Simplified Chinese
         'ZH': ['EN', '繁', 'PIN'],  # Traditional Chinese
+        'ZT': ['EN', '繁', 'PIN'],  # Traditional Chinese (Taiwan)
         'YUE': ['EN', '粵', 'YALE'],  # Cantonese | Change YALE to JYUT for Jyutping
         'JA': ['EN', '日', 'ROM']   # Japanese
     }
