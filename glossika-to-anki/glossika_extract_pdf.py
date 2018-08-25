@@ -18,7 +18,7 @@ def main():
         'ZH': ['EN', '繁', 'PIN'],  # Traditional Chinese
         'ZT': ['EN', '繁', 'PIN'],  # Traditional Chinese (Taiwan)
         'YUE': ['EN', '粵', 'YALE'],  # Cantonese | Change YALE to JYUT for Jyutping
-        'JA': ['EN', '日', 'ROM']   # Japanese
+        'JA': ['EN', '日|JA', 'ROM']   # Japanese
     }
 
     src_dir = os.path.join('glossika_source', 'pdf')
@@ -94,10 +94,10 @@ def main():
                         current_phrase = []
 
             # Match sentence by finding language flag
-            r = re.match('(\s+{}\s+)(\S.*)'.format(lang_flags[lang_ix]), line)
+            r = re.match('(\s+({})\s+)(\S.*)'.format(lang_flags[lang_ix]), line)
             if not r:
                 continue
-            current_sent = r.group(2)
+            current_sent = r.group(3)
             indent_level = len(r.group(1))
 
         if len(phrases) != 1000:
