@@ -15,8 +15,11 @@
     - On Windows you can run the installer from the Python website.
     - MacOS or Linux you can install python with `brew install python` or `apt install python`.
 2. [pdftotext](https://www.xpdfreader.com/download.html) - Converts the Glossika PDFs to text so that the phrases can be extracted with regex.
-    - On Windows download [Xpdf tools](https://www.xpdfreader.com/download.html) and copy pdftotext.exe to a folder on the path (i.e. the Python folder).
-    - On MacOS `brew cask install pdftotext`; on Linux `apt install poppler-utils`
+    - On Windows download [Xpdf tools](https://www.xpdfreader.com/download.html) and copy pdftotext.exe to a folder on the path (i.e. the Python folder). If you installed python with the Windows installer, the default path should be ```C:\Program Files``` or ```C:\Users\your_name\AppData\Local```. Alternatively, you might also be able to run  ```which python``` or ```where python``` from cmd prompt to figure out where the python executable is located.
+
+    - On MacOS `brew cask install pdftotext`
+    
+    - On Linux `apt install poppler-utils`
 3. [mp3splt](http://mp3splt.sourceforge.net/) - Splits the GMS-C files into individual files on the silence between sentences.
     - On Windows download mp3splt from the project homepage and add it to the path
     - On MacOS `brew install mp3splt`; on Linux `apt install mp3splt`
