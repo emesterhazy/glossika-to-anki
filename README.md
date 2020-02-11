@@ -25,6 +25,8 @@
     - `pip install genanki` or `pip3 install genanki`
 5. *v2 Glossika PDFs and GMS-C mp3 files*
     - The PDF script only works with the v2 Glossika PDFs. These files are searchable, and have a blue box around each phrase. If your PDFs are more than 20 mb you have the older version that is not supported.
+    - Here's an example of what the audio file names should look like: `ENZS-F1-GMS-C-0001.mp3`. Note that the ENZS prefix
+        is for Mandarin and varies by language.
     - *Note:* The Glossika PDFs and audio files are difficult to find since Glossika recently discontinued them and launched a subscription service. I heard some people have had luck contacting Glossika's support team to purchase the older PDF courses, but your milage may vary.
 
 ## Running
