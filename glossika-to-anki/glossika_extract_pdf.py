@@ -42,7 +42,7 @@ def main():
         f_name = f.split(os.sep)[-1]
         print('Processing  {}...'.format(f_name), end='')
 
-        re_match = re.search('(GLOSSIKA-EN(.{2,4})-..-EBK)\.pdf', f)
+        re_match = re.search('(GLOSSIKA-EN(.{2,4})-.{0,2}-?EBK)\.pdf', f)
         if not re_match:
             print('unmatched')
             print('File name does not match\n'
