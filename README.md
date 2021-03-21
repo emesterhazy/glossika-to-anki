@@ -6,8 +6,8 @@
 ## Features
 `glossika-to-anki` provides three main utilities:
 
-1. `glossika-extract-pdf.py` - Generate a TSV file of English and target language phrases from Glossika PDFs
-2. `glossika-split-audio.py` - Split GMS-C audio files into individual mp3s for each phrase
+1. `glossika_extract_pdf.py` - Generate a TSV file of English and target language phrases from Glossika PDFs
+2. `glossika_split_audio.py` - Split GMS-C audio files into individual mp3s for each phrase
 3. `generate_anki.py` - Create an Anki deck by combining each phase and its corresponding audio into a separate Anki note / card
 
 ## Requirements & Setup
@@ -37,8 +37,8 @@ cd glossika-to-anki/glossika-to-anki
 ```
 Run each script and follow the prompts to copy the Glossika files into the source folder that is created.
 ```
-python glossika-extract-pdf.py
-python glossika-split-audio.py
+python glossika_extract_pdf.py
+python glossika_split_audio.py
 python generate_anki.py
 ```
 Import your new Anki deck!
