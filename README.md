@@ -1,3 +1,17 @@
+# Archival Status
+This repository is archived and will not receive future updates or support.
+
+As of February, 2022 this software is still working assuming you install the
+correct dependencies.
+
+All code in this repository is made available under the [MIT license](LICENSE.md),
+so please feel free to fork / copy / modify it for your own use according to the
+license terms. Thank you to the contributors who have helped improve glossika-to-anki
+over the years.
+
+The original README follows below.
+
+
 # glossika-to-anki
 *Generate Anki decks from Glossika PDFs and audio files*
 
